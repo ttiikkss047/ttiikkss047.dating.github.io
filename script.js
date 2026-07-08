@@ -104,6 +104,8 @@
         datePicker.max = lastDay;
 
         datePicker.value = `${year}-${month}-${String(now.getDate()).padStart(2, '0')}`;
+        const timePicker = document.getElementById('timePicker');
+        timePicker.value = now.toTimeString().slice(0, 5);
     }
 
 
@@ -112,14 +114,18 @@
         nextScreen(4);
     }
 
-    function selectCustomDate() {
-        const val = document.getElementById('datePicker').value;
-        if (val) {
-   
-            const dateParts = val.split('-');
-            answers.time = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]} (Կոնկրետ Օր) 📅`;
-            nextScreen(4);
+    function selectCustomDateTime() {
+        const dateVal = document.getElementById('datePicker').value;
+        const timeVal = document.getElementById('timePicker').value;
+
+        if (!dateVal || !timeVal) {
+            alert('Խնդրում ենք ընտրեք ամսաթիվը և ժամը։');
+            return;
         }
+
+        const dateParts = dateVal.split('-');
+        answers.time = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]} ${timeVal}`;
+        nextScreen(4);
     }
 
     function selectPlace(val) {

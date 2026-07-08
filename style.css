@@ -96,6 +96,14 @@
             outline: none;
             transition: border-color 0.2s;
             cursor: pointer;
+            appearance: textfield;
+            -webkit-appearance: none;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
         }
 
         input[type="time"]:focus {
