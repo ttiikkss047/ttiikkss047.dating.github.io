@@ -56,8 +56,10 @@
     <div id="screen2" class="screen" style="min-height: 250px; position: relative;">
         <h2 id="questionTitle">Կգա՞ս ինձ հետ ժամադրության 🌹</h2>
         <p>Մտածիր լավ, բայց արագ...</p>
-        <button id="yesBtn" class="btn" onclick="nextScreen(3)">Այո՛, մեծ սիրով 😍</button>
-        <button id="noBtn" class="btn btn-no" onmouseover="handleNoClick()" onclick="handleNoClick();">Ոչ, զբաղված եմ 😜</button>
+        <div class="button-row">
+            <button id="yesBtn" class="btn" onclick="nextScreen(3)">Այո՛, մեծ սիրով 😍</button>
+            <button id="noBtn" class="btn btn-no" onmouseover="handleNoHover()" onclick="handleNoHover()">Ոչ, զբաղված եմ 😜</button>
+        </div>
         <p id="noResponseText" class="response-text"></p>
     </div>
 

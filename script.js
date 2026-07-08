@@ -57,14 +57,15 @@
         if (num === 2) {
             const noBtn = document.getElementById('noBtn');
             noBtn.style.position = 'absolute';
-            noBtn.style.left = '50%';
-            noBtn.style.transform = 'translateX(-50%)';
-            noBtn.style.top = '170px';
+            noBtn.style.left = 'calc(50% + 120px)';
+            noBtn.style.top = '50%';
+            noBtn.style.transform = 'translate(-50%, -50%)';
+            noBtn.classList.remove('btn-small');
 
             const yesBtn = document.getElementById('yesBtn');
-            yesBtn.classList.remove('btn-large');
+            yesBtn.classList.remove('btn-large', 'btn-extra-large');
             document.getElementById('noResponseText').innerText = '';
-            window.noClickCount = 0;
+            window.noHoverCount = 0;
         }
     }
 
@@ -95,22 +96,24 @@
         btn.style.transform = 'none';
     }
 
-    function handleNoClick() {
-        if (typeof window.noClickCount === 'undefined') {
-            window.noClickCount = 0;
+    function handleNoHover() {
+        if (typeof window.noHoverCount === 'undefined') {
+            window.noHoverCount = 0;
         }
-        window.noClickCount += 1;
+        window.noHoverCount += 1;
 
         const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
         const responseText = document.getElementById('noResponseText');
 
         yesBtn.classList.add('btn-large');
+        noBtn.classList.add('btn-small');
 
-        if (window.noClickCount >= 3) {
-            responseText.innerText = 'Ախր ես էլ սիրտ ունեմ ❤️ Մի քիչ էլ սեղմիր, այո՛ն արդեն մեծանում է։';
+        if (window.noHoverCount >= 3) {
+            responseText.innerText = 'Ախր ես էլ սիրտ ունեմ ❤️ Մի քիչ էլ մոտեցիր, այո՛ն մեծանում է։';
             yesBtn.classList.add('btn-extra-large');
         } else {
-            responseText.innerText = 'Ախր ոչն ինձ չի վախեցնում — այո՛ն ավելի մեծ է դարձնում։';
+            responseText.innerText = 'Ոչը փախչում է, բայց այոն առաջ է դուրս գալիս։';
             yesBtn.classList.remove('btn-extra-large');
         }
 
