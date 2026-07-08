@@ -9,6 +9,7 @@
 <body>
 
 <div class="container" id="mainContainer">
+
     <div id="setupScreen" class="screen">
         <h1>Ստեղծիր Հրավեր 💖</h1>
         <p>Լրացրու տվյալները, ստացիր անձնական հղումը և ուղարկիր նրան, ում ցանկանում ես հրավիրել։</p>
@@ -29,81 +30,65 @@
         </div>
 
         <div class="input-group">
-            <label for="setupChatId">Telegram Chat ID</label>
-            <input type="text" id="setupChatId" placeholder="987654321">
+            <label for="setupChatId">Telegram Chat ID </label>
+            <input type="text" id="setupChatId" placeholder="123456789">
         </div>
 
-        <button class="btn" onclick="generateInvitationLink()">Գեներացնել Հղումը 🔗</button>
+        <button class="btn" onclick="generateInvitationLink()">Ստանալ Հղումը 🚀</button>
 
         <div id="linkResultBox" class="hidden">
-            <hr>
-            <span class="badge">Պատրաստ է</span>
-            <p style="font-size: 14px; margin-bottom: 10px;">Պատճենիր այս հղումը և ուղարկիր նրան.</p>
             <div class="link-output" id="generatedLinkText"></div>
-            <button class="btn btn-outline" onclick="copyGeneratedLink()">Պատճենել Հղումը 📋</button>
+            <button class="btn" style="background:#2ec4b6;" onclick="copyGeneratedLink()">Պատճենել Հղումը 📋</button>
         </div>
     </div>
-
 
     <div id="screen1" class="screen">
-        <span class="badge" id="badgeNames">✨ Անակնկալ քեզ համար ✨</span>
-        <h2 id="welcomeTitle">Ողջո՜ւյն</h2>
-        <p id="welcomeDesc">Քեզ սպասում է կարևոր ու հետաքրքիր հարցաշար, որից խուսափելն ուղղակի անհնար է 😜</p>
-        <button class="btn" onclick="nextScreen(2)">Դե սկսենք 🚀</button>
+        <span class="badge" id="badgeNames">✨ Հատուկ հրավեր ✨</span>
+        <h1 id="welcomeTitle">Ողջո՜ւյն ✨</h1>
+        <p id="welcomeDesc">Քեզ համար հատուկ անակնկալ կա։ Պատրա՞ստ ես պատասխանել մի քանի հարցի 😜</p>
+        <button class="btn" onclick="nextScreen(2)">Սկսենք 🚀</button>
     </div>
 
-
-    <div id="screen2" class="screen" style="min-height: 250px; position: relative;">
+    <div id="screen2" class="screen">
         <h2 id="questionTitle">Կգա՞ս ինձ հետ ժամադրության 🌹</h2>
-        <p>Մտածիր լավ, բայց արագ...</p>
-        <div class="button-row">
-            <button id="yesBtn" class="btn" onclick="nextScreen(3)">Այո՛, մեծ սիրով 😍</button>
-            <button id="noBtn" class="btn btn-no" onmouseover="handleNoHover()" onclick="handleNoHover()">Ոչ, զբաղված եմ 😜</button>
+        
+        <div class="button-row" id="buttonRow">
+            <button class="btn" id="yesBtn" onclick="nextScreen(3)">ԱՅՈ՛ 😍</button>
+            <button class="btn btn-secondary btn-no" id="noBtn" onmouseover="handleNoHover(event)" onclick="handleNoHover(event)">Ոչ Ոչ 😜</button>
         </div>
-        <p id="noResponseText" class="response-text"></p>
     </div>
-
 
     <div id="screen3" class="screen">
         <h2>Ե՞րբ ես ազատ 📅</h2>
-        <p>Ընտրիր տարբերակներից մեկը կամ նշիր կոնկրետ օրը ու ժամ (այս ամսվա շրջանակներում)՝</p>
-        <div class="gif-box">
-            <img src="https://raw.githubusercontent.com/UjjwalSaini07/AlwaysBeMine/main/src/assets/GifData/heart.gif" alt="Cute heart gif">
-        </div>
-        <div class="option-card" onclick="selectTime('Այս հանգստյան օրերին 📅')">Այս հանգիստյան օրերին 📅</div>
-        <div class="option-card" onclick="selectTime('Աշխատանքային օրերին՝ երեկոյան 🌙')">Աշխատանքային օրերին՝ երեկոյան 🌙</div>
-        <div class="option-card" onclick="selectTime('Կախված է նրանից, թե ուր ենք գնալու 🤫')">Կախված է նրանից, թե ուր ենք գնալու 🤫</div>
+        <p>Ընտրիր տարբերակներից մեկը կամ նշիր կոնկրետ օր/ժամ.</p>
         
-        <hr>
-        <label style="font-size: 14px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 8px;">
-            Կամ նշիր կոնկրետ ամսաթիվ և ժամ.
-        </label>
-        <div style="display: flex; gap: 10px; margin-bottom: 12px;">
-            <div style="flex: 1;">
-                <input type="date" id="datePicker" style="margin-bottom: 0;">
-            </div>
-            <div style="flex: 1;">
-                <input type="time" id="timePicker" style="margin-bottom: 0;" min="00:00" max="23:59">
-            </div>
+        <div class="option-card" onclick="selectTime('Այս Ուրբաթ ✨')">Այս Ուրբաթ ✨</div>
+        <div class="option-card" onclick="selectTime('Այս Շաբաթ-Կիրակի 🍕')">Այս Շաբաթ-Կիրակի 🍕</div>
+        <div class="option-card" onclick="selectTime('Քո ընտրած ցանկացած օր 🗓️')">Քո ընտրած ցանկացած օր 🗓️</div>
+
+        <div style="margin-top: 15px; text-align: left;">
+            <label style="font-size: 13px; font-weight: 600;">Ընտրիր կոնկրետ օր/ժամ:</label>
+            <input type="date" id="datePicker" style="margin-top: 5px;">
+            <input type="time" id="timePicker" style="margin-top: 5px;">
+            <button class="btn" style="margin-top: 10px; width: 100%;" onclick="selectCustomDateTime()">Հաստատել 🗓️</button>
         </div>
-        <button class="btn btn-outline" onclick="selectCustomDateTime()">Հաստատել ✔️</button>
     </div>
 
     <div id="screen4" class="screen">
-        <h2>Ո՞ւր ենք գնում 📍</h2>
-        <p>Ընտրիր քո սիրելի ձևաչափը.</p>
+        <h2>Ո՞ւր գնանք 📍</h2>
+        <p>Ո՞ր տարբերակն ես նախընտրում.</p>
         
-        <div class="option-card" onclick="selectPlace('Ռոմանտիկ ընթրիք սրճարանում 🕯️')">Ռոմանտիկ ընթրիք սրճարանում 🕯️</div>
-        <div class="option-card" onclick="selectPlace('Զբոսանք Կասկադում + սուրճ ☕')">Զբոսանք Կասկադում + սուրճ ☕</div>
-        <div class="option-card" onclick="showPapaInput()">«Գումարած պապայի թույլտվությունը» (Քաղաքից դուրս) 🚘</div>
-        
-        <div id="papaBox" class="hidden" style="margin: 15px 0; padding: 15px; background: #fff1f2; border-radius: 12px; border: 1px solid #fecdd3;">
-            <p style="font-size: 14px; margin-bottom: 10px; color: #be123c;">Գրիր այն տեղը, ուր իսկապես արժե գնալ (թեկուզ տուրով 😂😍)՝</p>
-            <input type="text" id="customLocation" placeholder="Օրինակ՝ Դիլիջանի անտառներում... 🌲" style="margin-bottom: 10px;">
-            <button class="btn" style="background-color: #3a86ff; box-shadow: 0 4px 12px rgba(58, 134, 255, 0.3);" onclick="submitPapaLocation()">Շարունակել ➡️</button>
+        <div class="option-card" onclick="selectPlace('Սրճարան / Ռեստորան ☕')">Սրճարան / Ռեստորան ☕</div>
+        <div class="option-card" onclick="selectPlace('Զբոսանք քաղաքում 🚶‍♂️')">Զբոսանք քաղաքում 🚶‍♂️</div>
+        <div class="option-card" onclick="selectPlace('Կինո 🍿')">Կինո 🍿</div>
+        <div class="option-card" onclick="showPapaInput()">Գումարած պապայի թույլտվությունը... 👨‍👧</div>
+
+        <div id="papaBox" class="hidden" style="margin-top: 15px;">
+            <p style="font-size: 13px; color: var(--text-muted);">Գրիր հատուկ վայրը (կամ պապայի թույլտվությամբ հեռու մի տեղ😂)՝</p>
+            <input type="text" id="customLocation" placeholder="Օրինակ՝ Տաթևի Վանք" style="margin-bottom: 10px;">
+            <button class="btn" style="background-color: #3a86ff;" onclick="submitPapaLocation()">Շարունակել ➡️</button>
         </div>
     </div>
-
 
     <div id="screen5" class="screen">
         <h2>Ի՞նչ ենք ուտելու/խմելու 🍕🍱</h2>
@@ -113,14 +98,12 @@
         <div class="option-card" onclick="finish('Բուրգեր / Սթեյք 🍔🥩')">Բուրգեր / Սթեյք 🍔🥩</div>
         <div class="option-card" onclick="finish('Ասիական խոհանոց / Wok / Լապշա 🍜')">Ասիական խոհանոց / Wok / Լապշա 🍜</div>
         <div class="option-card" onclick="finish('Սուրճ/Թեյ Քաղցր ☕🍰')">Սուրճ/Թեյ Քաղցր ☕🍰</div>
-        <div class="option-card" onclick="finish('Ինչ-որ էկզոտիկ կամ նոր բան 🌮')">Ինչ-որ էկզոտիկ կամ նոր բան 🌮</div>
-        <div class="option-card" onclick="finish('Ինձ համար մեկ է, կարևորը լավ միջավայրն է ✨')">Ինձ համար մեկ է, կարևորը լավ միջավայրն է ✨</div>
     </div>
 
-    <!-- ԷԿՐԱՆ 6. Ավարտ -->
     <div id="screen6" class="screen">
-        <h2 style="color: #4c9a2a;">Կատարյա՛լ է 🎉</h2>
-        <p id="finalMessage">Բոլոր պատասխանները հաջողությամբ արձանագրվեցին և փոխանցվեցին։ Ես արդեն սկսում եմ պատրաստվել մեր հանդիպման համար 💕</p>
+        <h1>Ուռա՜ 🎉✨</h1>
+        <p>Պատասխաններդ պահպանվեցին/ուղարկվեցին։</p>
+        <p style="font-size: 18px; font-weight: bold; color: var(--primary); margin-top: 15px;">Անհամբեր սպասում եմ մեր հանդիպմանը ❤️</p>
     </div>
 
 </div>
