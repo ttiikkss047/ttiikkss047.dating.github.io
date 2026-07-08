@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ինտերակտիվ Հրավեր ✨</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
@@ -63,7 +63,7 @@
 
     <div id="screen3" class="screen">
         <h2>Ե՞րբ ես ազատ 📅</h2>
-        <p>Ընտրիր տարբերակներից մեկը կամ նշիր կոնկրետ օրը (այս ամսվա շրջանակներում)՝</p>
+        <p>Ընտրիր տարբերակներից մեկը կամ նշիր կոնկրետ օրը ու ժամ (այս ամսվա շրջանակներում)՝</p>
         
         <div class="option-card" onclick="selectTime('Այս հանգստյան օրերին 📅')">Այս հանգստյան օրերին 📅</div>
         <div class="option-card" onclick="selectTime('Աշխատանքային օրերին՝ երեկոյան 🌙')">Աշխատանքային օրերին՝ երեկոյան 🌙</div>
@@ -71,10 +71,17 @@
         
         <hr>
         <label style="font-size: 14px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 8px;">
-            Կամ նշիր կոնկրետ ամսաթիվ.
+            Կամ նշիր կոնկրետ ամսաթիվ և ժամ.
         </label>
-        <input type="date" id="datePicker" style="margin-bottom: 12px;">
-        <button class="btn btn-outline" onclick="selectCustomDate()">Հաստատել Օրը ✔️</button>
+        <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+            <div style="flex: 1;">
+                <input type="date" id="datePicker" style="margin-bottom: 0;">
+            </div>
+            <div style="flex: 1;">
+                <input type="time" id="timePicker" style="margin-bottom: 0;">
+            </div>
+        </div>
+        <button class="btn btn-outline" onclick="selectCustomDateTime()">Հաստատել ✔️</button>
     </div>
 
     <div id="screen4" class="screen">
@@ -113,6 +120,6 @@
 
 </div>
 
-<script src="script.js"></script>
+<script src="./script.js"></script>
 </body>
 </html>
