@@ -35,7 +35,7 @@
             
 
             document.getElementById('welcomeTitle').innerText = `Ողջո՜ւյն, ${inviteeName} ✨`;
-            document.getElementById('welcomeDesc').innerText = `${creatorName}-ը քեզ համար հատուկ անակնկալ ունի։ Պատրա՞ստ ես պատասխանել մի քանի հարցի։`;
+            document.getElementById('welcomeDesc').innerText = `${creatorName}-ը քեզ համար հատուկ անակնկալ ունի։ Պատրա՞ստ ես պատասխանել մի քանի հարցի 😜`;
             document.getElementById('questionTitle').innerText = `Կգա՞ս ինձ հետ ժամադրության, ${inviteeName}՞ 🌹`;
             document.getElementById('badgeNames').innerText = `✨ Հատուկ հրավեր ${inviteeName}-ին ✨`;
             
@@ -73,6 +73,7 @@
     });
 
  
+    function moveNoButton() {
         const btn = document.getElementById('noBtn');
         const container = document.getElementById('mainContainer');
         const containerRect = container.getBoundingClientRect();
@@ -114,7 +115,7 @@
     function selectCustomDate() {
         const val = document.getElementById('datePicker').value;
         if (val) {
-  
+   
             const dateParts = val.split('-');
             answers.time = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]} (Կոնկրետ Օր) 📅`;
             nextScreen(4);
@@ -143,7 +144,7 @@
     function finish(foodVal) {
         answers.food = foodVal;
         
- 
+  
         if (botToken && chatId) {
             const messageText = `🔔 *ԺԱՄԱԴՐՈՒԹՅԱՆ ՊԱՏԱՍԽԱՆ* 🔔\n\n` +
                                 `👤 *Ումից:* ${inviteeName}\n` +
