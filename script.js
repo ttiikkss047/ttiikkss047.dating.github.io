@@ -1,5 +1,5 @@
 
-    // --- Գլոբալ Փոփոխականներ ---
+    
     let creatorName = "Creator name";
     let inviteeName = "Invite Name";
     let botToken = "";
@@ -12,7 +12,7 @@
         food: ''
     };
 
-    // --- Էջի բեռնման տրամաբանությունը ---
+
     window.onload = function() {
         const urlParams = new URLSearchParams(window.location.search);
         
@@ -21,12 +21,11 @@
         const tParam = urlParams.get('t');
         const chParam = urlParams.get('ch');
 
-        // Եթե URL-ում չկան անուններ, ապա բացել Կարգավորումների ռեժիմը (Setup)
         if (!cParam || !iParam) {
             setupActive = true;
             showScreen('setupScreen');
         } else {
-            // Եթե կան, բացել ինտերակտիվ հարցաշարը
+
             creatorName = decodeURIComponent(cParam);
             inviteeName = decodeURIComponent(iParam);
             botToken = tParam ? decodeURIComponent(tParam) : "";
@@ -34,7 +33,7 @@
 
             setupActive = false;
             
-            // Դինամիկ տեքստերի տեղադրում հարցաշարում
+
             document.getElementById('welcomeTitle').innerText = `Ողջո՜ւյն, ${inviteeName} ✨`;
             document.getElementById('welcomeDesc').innerText = `${creatorName}-ը քեզ համար հատուկ անակնկալ ունի։ Պատրա՞ստ ես պատասխանել մի քանի հարցի։`;
             document.getElementById('questionTitle').innerText = `Կգա՞ս ինձ հետ ժամադրության, ${inviteeName}՞ 🌹`;
@@ -45,16 +44,16 @@
         }
     };
 
-    // --- Էջը ցույց տալու ֆունկցիա ---
+
     function showScreen(screenId) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById(screenId).classList.add('active');
     }
 
-    // --- Էկրանների հաջորդական փոփոխություն ---
+
     function nextScreen(num) {
         showScreen('screen' + num);
-        // Եթե երկրորդ էկրանն է, կոճակը վերադարձնել իր նախնական տեղը
+ 
         if (num === 2) {
             const noBtn = document.getElementById('noBtn');
             noBtn.style.position = 'absolute';
@@ -64,7 +63,7 @@
         }
     }
 
-    // --- ԿԱՆԽԵԼ ԷՋԻ ՓԱԿՎԵԼԸ (միայն հարցաշարի ժամանակ) ---
+  
     window.addEventListener("beforeunload", function (e) {
         if (!setupActive && !document.getElementById('screen6').classList.contains('active')) {
             let confirmMsg = "Դուք դեռ չեք ավարտել պատասխանները։";
@@ -73,13 +72,12 @@
         }
     });
 
-    // --- «Ոչ» կոճակի փախչելու ֆունկցիա (հարմարեցված նաև հեռախոսների համար) ---
-    function moveNoButton() {
+ 
         const btn = document.getElementById('noBtn');
         const container = document.getElementById('mainContainer');
         const containerRect = container.getBoundingClientRect();
         
-        // Սահմանափակել փախուստի տարածքը կոնտեյների ներսում
+
         const maxX = containerRect.width - btn.offsetWidth - 30;
         const maxY = containerRect.height - btn.offsetHeight - 40;
 
@@ -91,7 +89,6 @@
         btn.style.transform = 'none';
     }
 
-    // --- Օրացույցի սահմանափակում միայն ընթացիկ ամսով ---
     function setupDatePickerLimits() {
         const datePicker = document.getElementById('datePicker');
         const now = new Date();
@@ -104,11 +101,11 @@
 
         datePicker.min = firstDay;
         datePicker.max = lastDay;
-        // Լռելյայն դնել այսօրվա օրը
+
         datePicker.value = `${year}-${month}-${String(now.getDate()).padStart(2, '0')}`;
     }
 
-    // --- Ընտրանքների պահպանում ---
+
     function selectTime(val) {
         answers.time = val;
         nextScreen(4);
@@ -117,7 +114,7 @@
     function selectCustomDate() {
         const val = document.getElementById('datePicker').value;
         if (val) {
-            // Ձևաչափել հայերեն ընթեռնելի տարբերակով
+  
             const dateParts = val.split('-');
             answers.time = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]} (Կոնկրետ Օր) 📅`;
             nextScreen(4);
@@ -143,11 +140,10 @@
         }
     }
 
-    // --- Պատասխանների ուղարկում և ավարտ ---
     function finish(foodVal) {
         answers.food = foodVal;
         
-        // Ուղարկում Telegram Bot-ին (եթե տվյալները լրացված են)
+ 
         if (botToken && chatId) {
             const messageText = `🔔 *ԺԱՄԱԴՐՈՒԹՅԱՆ ՊԱՏԱՍԽԱՆ* 🔔\n\n` +
                                 `👤 *Ումից:* ${inviteeName}\n` +
@@ -170,7 +166,7 @@
         nextScreen(6);
     }
 
-    // --- ԿԱՐԳԱՎՈՐՈՒՄՆԵՐԻ ԳԵՆԵՐԱՑՈՒՄ (Setup Actions) ---
+
     function generateInvitationLink() {
         const creator = document.getElementById('setupCreator').value.trim();
         const invitee = document.getElementById('setupInvitee').value.trim();
