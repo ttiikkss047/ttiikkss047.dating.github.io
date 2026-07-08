@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ինտերակտիվ Հրավեր ✨</title>
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
 <div class="container" id="mainContainer">
-    
-    <!-- ==================== ՌԵԺԻՄ 1. ԿԱՐԳԱՎՈՐՈՒՄՆԵՐԻ ՎԱՀԱՆԱԿ (SETUP) ==================== -->
     <div id="setupScreen" class="screen">
         <h1>Ստեղծիր Հրավեր 💖</h1>
         <p>Լրացրու տվյալները, ստացիր անձնական հղումը և ուղարկիր նրան, ում ցանկանում ես հրավիրել։</p>
@@ -26,12 +25,12 @@
         </div>
 
         <div class="input-group">
-            <label for="setupBotToken">Telegram Bot Token (Ոչ պարտադիր)</label>
+            <label for="setupBotToken">Telegram Bot Token </label>
             <input type="text" id="setupBotToken" placeholder="123456789:ABCdef...">
         </div>
 
         <div class="input-group">
-            <label for="setupChatId">Telegram Chat ID (Ոչ պարտադիր)</label>
+            <label for="setupChatId">Telegram Chat ID </label>
             <input type="text" id="setupChatId" placeholder="987654321">
         </div>
 
@@ -46,9 +45,7 @@
         </div>
     </div>
 
-    <!-- ==================== ՌԵԺԻՄ 2. ԲՈՒՆ ՀՐԱՎԵՐԻ ՔՎԻԶ (INVITATION) ==================== -->
-    
-    <!-- ԷԿՐԱՆ 1. Մուտք -->
+
     <div id="screen1" class="screen">
         <span class="badge" id="badgeNames">✨ Անակնկալ քեզ համար ✨</span>
         <h2 id="welcomeTitle">Ողջո՜ւյն</h2>
@@ -56,7 +53,7 @@
         <button class="btn" onclick="nextScreen(2)">Դե սկսենք 🚀</button>
     </div>
 
-    <!-- ԷԿՐԱՆ 2. Գլխավոր հարց -->
+
     <div id="screen2" class="screen" style="min-height: 250px; position: relative;">
         <h2 id="questionTitle">Կգա՞ս ինձ հետ ժամադրության 🌹</h2>
         <p>Մտածիր լավ, բայց արագ...</p>
@@ -64,7 +61,7 @@
         <button id="noBtn" class="btn btn-no" onmouseover="moveNoButton()" onclick="moveNoButton()">Ոչ, զբաղված եմ 😜</button>
     </div>
 
-    <!-- ԷԿՐԱՆ 3. Օրվա ընտրություն -->
+
     <div id="screen3" class="screen">
         <h2>Ե՞րբ ես ազատ 📅</h2>
         <p>Ընտրիր տարբերակներից մեկը կամ նշիր կոնկրետ օրը (այս ամսվա շրջանակներում)՝</p>
@@ -81,7 +78,6 @@
         <button class="btn btn-outline" onclick="selectCustomDate()">Հաստատել Օրը ✔️</button>
     </div>
 
-    <!-- ԷԿՐԱՆ 4. Վայրի ընտրություն -->
     <div id="screen4" class="screen">
         <h2>Ո՞ւր ենք գնում 📍</h2>
         <p>Ընտրիր քո սիրելի ձևաչափը.</p>
@@ -97,7 +93,7 @@
         </div>
     </div>
 
-    <!-- ԷԿՐԱՆ 5. Ընդլայնված Մենյու -->
+
     <div id="screen5" class="screen">
         <h2>Ի՞նչ ենք ուտելու/խմելու 🍕🍱</h2>
         <p>Ընտրիր քո նախընտրած ուտելիքը.</p>
@@ -118,6 +114,6 @@
 
 </div>
 
-
+<script src="script.js"></script>
 </body>
 </html>
