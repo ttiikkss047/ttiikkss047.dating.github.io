@@ -60,6 +60,11 @@
             noBtn.style.left = '50%';
             noBtn.style.transform = 'translateX(-50%)';
             noBtn.style.top = '170px';
+
+            const yesBtn = document.getElementById('yesBtn');
+            yesBtn.classList.remove('btn-large');
+            document.getElementById('noResponseText').innerText = '';
+            window.noClickCount = 0;
         }
     }
 
@@ -88,6 +93,28 @@
         btn.style.left = randomX + 'px';
         btn.style.top = randomY + 'px';
         btn.style.transform = 'none';
+    }
+
+    function handleNoClick() {
+        if (typeof window.noClickCount === 'undefined') {
+            window.noClickCount = 0;
+        }
+        window.noClickCount += 1;
+
+        const yesBtn = document.getElementById('yesBtn');
+        const responseText = document.getElementById('noResponseText');
+
+        yesBtn.classList.add('btn-large');
+
+        if (window.noClickCount >= 3) {
+            responseText.innerText = 'Ախր ես էլ սիրտ ունեմ ❤️ Մի քիչ էլ սեղմիր, այո՛ն արդեն մեծանում է։';
+            yesBtn.classList.add('btn-extra-large');
+        } else {
+            responseText.innerText = 'Ախր ոչն ինձ չի վախեցնում — այո՛ն ավելի մեծ է դարձնում։';
+            yesBtn.classList.remove('btn-extra-large');
+        }
+
+        moveNoButton();
     }
 
     function setupDatePickerLimits() {

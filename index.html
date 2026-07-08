@@ -56,16 +56,19 @@
     <div id="screen2" class="screen" style="min-height: 250px; position: relative;">
         <h2 id="questionTitle">Կգա՞ս ինձ հետ ժամադրության 🌹</h2>
         <p>Մտածիր լավ, բայց արագ...</p>
-        <button class="btn" onclick="nextScreen(3)">Այո՛, մեծ սիրով 😍</button>
-        <button id="noBtn" class="btn btn-no" onmouseover="moveNoButton()" onclick="moveNoButton()">Ոչ, զբաղված եմ 😜</button>
+        <button id="yesBtn" class="btn" onclick="nextScreen(3)">Այո՛, մեծ սիրով 😍</button>
+        <button id="noBtn" class="btn btn-no" onmouseover="handleNoClick()" onclick="handleNoClick();">Ոչ, զբաղված եմ 😜</button>
+        <p id="noResponseText" class="response-text"></p>
     </div>
 
 
     <div id="screen3" class="screen">
         <h2>Ե՞րբ ես ազատ 📅</h2>
         <p>Ընտրիր տարբերակներից մեկը կամ նշիր կոնկրետ օրը ու ժամ (այս ամսվա շրջանակներում)՝</p>
-        
-        <div class="option-card" onclick="selectTime('Այս հանգստյան օրերին 📅')">Այս հանգստյան օրերին 📅</div>
+        <div class="gif-box">
+            <img src="https://raw.githubusercontent.com/UjjwalSaini07/AlwaysBeMine/main/src/assets/GifData/heart.gif" alt="Cute heart gif">
+        </div>
+        <div class="option-card" onclick="selectTime('Այս հանգստյան օրերին 📅')">Այս հանգիստյան օրերին 📅</div>
         <div class="option-card" onclick="selectTime('Աշխատանքային օրերին՝ երեկոյան 🌙')">Աշխատանքային օրերին՝ երեկոյան 🌙</div>
         <div class="option-card" onclick="selectTime('Կախված է նրանից, թե ուր ենք գնալու 🤫')">Կախված է նրանից, թե ուր ենք գնալու 🤫</div>
         

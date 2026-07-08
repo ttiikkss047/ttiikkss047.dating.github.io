@@ -95,9 +95,9 @@
             background-color: #fff;
             outline: none;
             transition: border-color 0.2s;
-            cursor: pointer;
+            cursor: text;
             appearance: textfield;
-            -webkit-appearance: none;
+            -webkit-appearance: textfield;
             opacity: 1;
             pointer-events: auto;
         }
@@ -163,6 +163,23 @@
             box-shadow: 0 6px 20px rgba(74, 78, 105, 0.4);
         }
 
+        .btn-large {
+            transform: scale(1.08);
+            transition: transform 0.2s ease;
+        }
+
+        .btn-extra-large {
+            transform: scale(1.16);
+            transition: transform 0.2s ease;
+        }
+
+        .response-text {
+            margin-top: 14px;
+            font-size: 14px;
+            color: #9c1d66;
+            min-height: 22px;
+        }
+
         .screen {
             display: none;
         }
@@ -170,6 +187,19 @@
         .screen.active {
             display: block;
             animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .gif-box {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .gif-box img {
+            width: 100%;
+            max-width: 260px;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
         }
 
         .option-card {
