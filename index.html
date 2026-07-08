@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ինտերակտիվ Հրավեր ✨</title>
+    <style>
+        :root {
+            --primary: #ff477e;
+            --primary-hover: #ff0054;
+            --bg-gradient: linear-gradient(135deg, #ffe5ec 0%, #ffcad4 50%, #f3abb6 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-dark: #2b2d42;
+            --text-muted: #6c757d;
+            --border-color: #ffcad4;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: var(--card-bg);
+            padding: 35px 25px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(214, 51, 132, 0.15);
+            max-width: 460px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        h1, h2 {
+            color: #d63384;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        h1 { font-size: 26px; }
+        h2 { font-size: 22px; }
+
+        p {
+            color: var(--text-dark);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #d63384;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 15px;
+            color: var(--text-dark);
+            background-color: #fff;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 71, 126, 0.15);
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            margin: 8px 0;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255, 71, 126, 0.3);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 71, 126, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 71, 126, 0.05);
+            color: var(--primary-hover);
+            box-shadow: none;
+        }
+
+        /* Ոչ կոճակի դիրքը */
+        .btn-no {
+            background-color: #8d99ae;
+            box-shadow: 0 4px 15px rgba(141, 153, 174, 0.3);
+            position: absolute;
+            z-index: 10;
+            width: auto;
+            min-width: 140px;
+        }
+        .btn-no:hover {
+            background-color: #4a4e69;
+            box-shadow: 0 6px 20px rgba(74, 78, 105, 0.4);
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .option-card {
+            background: #fff;
+            border: 2px solid var(--border-color);
+            border-radius: 14px;
+            padding: 15px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        .option-card:hover {
+            border-color: var(--primary);
+            background-color: rgba(255, 71, 126, 0.02);
+            transform: translateX(5px);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .link-output {
+            background: #f8f9fa;
+            border: 1px dashed var(--primary);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            word-break: break-all;
+            font-size: 13px;
+            color: var(--text-dark);
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ffe5ec;
+            color: #d63384;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        /* Էֆեկտներ */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: var(--border-color);
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="mainContainer">
+    
+    <!-- ==================== ՌԵԺԻՄ 1. ԿԱՐԳԱՎՈՐՈՒՄՆԵՐԻ ՎԱՀԱՆԱԿ (SETUP) ==================== -->
+    <div id="setupScreen" class="screen">
+        <h1>Ստեղծիր Հրավեր 💖</h1>
+        <p>Լրացրու տվյալները, ստացիր անձնական հղումը և ուղարկիր նրան, ում ցանկանում ես հրավիրել։</p>
+        
+        <div class="input-group">
+            <label for="setupCreator">Քո Անունը</label>
+            <input type="text" id="setupCreator" placeholder="Օրինակ՝ Արամ">
+        </div>
+
+        <div class="input-group">
+            <label for="setupInvitee">Նրա Անունը</label>
+            <input type="text" id="setupInvitee" placeholder="Օրինակ՝ Անահիտ">
+        </div>
+
+        <div class="input-group">
+            <label for="setupBotToken">Telegram Bot Token (Ոչ պարտադիր)</label>
+            <input type="text" id="setupBotToken" placeholder="123456789:ABCdef...">
+        </div>
+
+        <div class="input-group">
+            <label for="setupChatId">Telegram Chat ID (Ոչ պարտադիր)</label>
+            <input type="text" id="setupChatId" placeholder="987654321">
+        </div>
+
+        <button class="btn" onclick="generateInvitationLink()">Գեներացնել Հղումը 🔗</button>
+
+        <div id="linkResultBox" class="hidden">
+            <hr>
+            <span class="badge">Պատրաստ է</span>
+            <p style="font-size: 14px; margin-bottom: 10px;">Պատճենիր այս հղումը և ուղարկիր նրան.</p>
+            <div class="link-output" id="generatedLinkText"></div>
+            <button class="btn btn-outline" onclick="copyGeneratedLink()">Պատճենել Հղումը 📋</button>
+        </div>
+    </div>
+
+    <!-- ==================== ՌԵԺԻՄ 2. ԲՈՒՆ ՀՐԱՎԵՐԻ ՔՎԻԶ (INVITATION) ==================== -->
+    
+    <!-- ԷԿՐԱՆ 1. Մուտք -->
+    <div id="screen1" class="screen">
+        <span class="badge" id="badgeNames">✨ Անակնկալ քեզ համար ✨</span>
+        <h2 id="welcomeTitle">Ողջո՜ւյն</h2>
+        <p id="welcomeDesc">Քեզ սպասում է կարևոր ու հետաքրքիր հարցաշար, որից խուսափելն ուղղակի անհնար է 😜</p>
+        <button class="btn" onclick="nextScreen(2)">Դե սկսենք 🚀</button>
+    </div>
+
+    <!-- ԷԿՐԱՆ 2. Գլխավոր հարց -->
+    <div id="screen2" class="screen" style="min-height: 250px; position: relative;">
+        <h2 id="questionTitle">Կգա՞ս ինձ հետ ժամադրության 🌹</h2>
+        <p>Մտածիր լավ, բայց արագ...</p>
+        <button class="btn" onclick="nextScreen(3)">Այո՛, մեծ սիրով 😍</button>
+        <button id="noBtn" class="btn btn-no" onmouseover="moveNoButton()" onclick="moveNoButton()">Ոչ, զբաղված եմ 😜</button>
+    </div>
+
+    <!-- ԷԿՐԱՆ 3. Օրվա ընտրություն -->
+    <div id="screen3" class="screen">
+        <h2>Ե՞րբ ես ազատ 📅</h2>
+        <p>Ընտրիր տարբերակներից մեկը կամ նշիր կոնկրետ օրը (այս ամսվա շրջանակներում)՝</p>
+        
+        <div class="option-card" onclick="selectTime('Այս հանգստյան օրերին 📅')">Այս հանգստյան օրերին 📅</div>
+        <div class="option-card" onclick="selectTime('Աշխատանքային օրերին՝ երեկոյան 🌙')">Աշխատանքային օրերին՝ երեկոյան 🌙</div>
+        <div class="option-card" onclick="selectTime('Կախված է նրանից, թե ուր ենք գնալու 🤫')">Կախված է նրանից, թե ուր ենք գնալու 🤫</div>
+        
+        <hr>
+        <label style="font-size: 14px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 8px;">
+            Կամ նշիր կոնկրետ ամսաթիվ.
+        </label>
+        <input type="date" id="datePicker" style="margin-bottom: 12px;">
+        <button class="btn btn-outline" onclick="selectCustomDate()">Հաստատել Օրը ✔️</button>
+    </div>
+
+    <!-- ԷԿՐԱՆ 4. Վայրի ընտրություն -->
+    <div id="screen4" class="screen">
+        <h2>Ո՞ւր ենք գնում 📍</h2>
+        <p>Ընտրիր քո սիրելի ձևաչափը.</p>
+        
+        <div class="option-card" onclick="selectPlace('Ռոմանտիկ ընթրիք սրճարանում 🕯️')">Ռոմանտիկ ընթրիք սրճարանում 🕯️</div>
+        <div class="option-card" onclick="selectPlace('Զբոսանք Կասկադում + սուրճ ☕')">Զբոսանք Կասկադում + սուրճ ☕</div>
+        <div class="option-card" onclick="showPapaInput()">«Գումարած պապայի թույլտվությունը» (Քաղաքից դուրս) 🚘</div>
+        
+        <div id="papaBox" class="hidden" style="margin: 15px 0; padding: 15px; background: #fff1f2; border-radius: 12px; border: 1px solid #fecdd3;">
+            <p style="font-size: 14px; margin-bottom: 10px; color: #be123c;">Գրիր այն տեղը, ուր իսկապես արժե գնալ (թեկուզ տուրով 😂😍)՝</p>
+            <input type="text" id="customLocation" placeholder="Օրինակ՝ Դիլիջանի անտառներում... 🌲" style="margin-bottom: 10px;">
+            <button class="btn" style="background-color: #3a86ff; box-shadow: 0 4px 12px rgba(58, 134, 255, 0.3);" onclick="submitPapaLocation()">Շարունակել ➡️</button>
+        </div>
+    </div>
+
+    <!-- ԷԿՐԱՆ 5. Ընդլայնված Մենյու -->
+    <div id="screen5" class="screen">
+        <h2>Ի՞նչ ենք ուտելու/խմելու 🍕🍱</h2>
+        <p>Ընտրիր քո նախընտրած ուտելիքը.</p>
+        
+        <div class="option-card" onclick="finish('Սուշի կամ Պիցցա 🍕🍣')">Սուշի կամ Պիցցա 🍕🍣</div>
+        <div class="option-card" onclick="finish('Բուրգեր / Սթեյք 🍔🥩')">Բուրգեր / Սթեյք 🍔🥩</div>
+        <div class="option-card" onclick="finish('Ասիական խոհանոց / Wok / Լապշա 🍜')">Ասիական խոհանոց / Wok / Լապշա 🍜</div>
+        <div class="option-card" onclick="finish('Սուրճ/Թեյ Քաղցր ☕🍰')">Սուրճ/Թեյ Քաղցր ☕🍰</div>
+        <div class="option-card" onclick="finish('Ինչ-որ էկզոտիկ կամ նոր բան 🌮')">Ինչ-որ էկզոտիկ կամ նոր բան 🌮</div>
+        <div class="option-card" onclick="finish('Ինձ համար մեկ է, կարևորը լավ միջավայրն է ✨')">Ինձ համար մեկ է, կարևորը լավ միջավայրն է ✨</div>
+    </div>
+
+    <!-- ԷԿՐԱՆ 6. Ավարտ -->
+    <div id="screen6" class="screen">
+        <h2 style="color: #4c9a2a;">Կատարյա՛լ է 🎉</h2>
+        <p id="finalMessage">Բոլոր պատասխանները հաջողությամբ արձանագրվեցին և փոխանցվեցին։ Ես արդեն սկսում եմ պատրաստվել։ Սպասի՛ր հաստատմանը 🤍</p>
+    </div>
+
+</div>
+
+<script>
+    // --- Գլոբալ Փոփոխականներ ---
+    let creatorName = "Տիկ";
+    let inviteeName = "Լիլիա";
+    let botToken = "";
+    let chatId = "";
+    let setupActive = false;
+
+    let answers = {
+        time: '',
+        location: '',
+        food: ''
+    };
+
+    // --- Էջի բեռնման տրամաբանությունը ---
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        const cParam = urlParams.get('c');
+        const iParam = urlParams.get('i');
+        const tParam = urlParams.get('t');
+        const chParam = urlParams.get('ch');
+
+        // Եթե URL-ում չկան անուններ, ապա բացել Կարգավորումների ռեժիմը (Setup)
+        if (!cParam || !iParam) {
+            setupActive = true;
+            showScreen('setupScreen');
+        } else {
+            // Եթե կան, բացել ինտերակտիվ հարցաշարը
+            creatorName = decodeURIComponent(cParam);
+            inviteeName = decodeURIComponent(iParam);
+            botToken = tParam ? decodeURIComponent(tParam) : "";
+            chatId = chParam ? decodeURIComponent(chParam) : "";
+
+            setupActive = false;
+            
+            // Դինամիկ տեքստերի տեղադրում հարցաշարում
+            document.getElementById('welcomeTitle').innerText = `Ողջո՜ւյն, ${inviteeName} ✨`;
+            document.getElementById('welcomeDesc').innerText = `${creatorName}-ը քեզ համար հատուկ անակնկալ ունի։ Պատրա՞ստ ես պատասխանել մի քանի հարցի։`;
+            document.getElementById('questionTitle').innerText = `Կգա՞ս ինձ հետ ժամադրության, ${inviteeName}՞ 🌹`;
+            document.getElementById('badgeNames').innerText = `✨ Հատուկ հրավեր ${inviteeName}-ին ✨`;
+            
+            showScreen('screen1');
+            setupDatePickerLimits();
+        }
+    };
+
+    // --- Էջը ցույց տալու ֆունկցիա ---
+    function showScreen(screenId) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(screenId).classList.add('active');
+    }
+
+    // --- Էկրանների հաջորդական փոփոխություն ---
+    function nextScreen(num) {
+        showScreen('screen' + num);
+        // Եթե երկրորդ էկրանն է, կոճակը վերադարձնել իր նախնական տեղը
+        if (num === 2) {
+            const noBtn = document.getElementById('noBtn');
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = '50%';
+            noBtn.style.transform = 'translateX(-50%)';
+            noBtn.style.top = '170px';
+        }
+    }
+
+    // --- ԿԱՆԽԵԼ ԷՋԻ ՓԱԿՎԵԼԸ (միայն հարցաշարի ժամանակ) ---
+    window.addEventListener("beforeunload", function (e) {
+        if (!setupActive && !document.getElementById('screen6').classList.contains('active')) {
+            let confirmMsg = "Դուք դեռ չեք ավարտել պատասխանները։";
+            (e || window.event).returnValue = confirmMsg;
+            return confirmMsg;
+        }
+    });
+
+    // --- «Ոչ» կոճակի փախչելու ֆունկցիա (հարմարեցված նաև հեռախոսների համար) ---
+    function moveNoButton() {
+        const btn = document.getElementById('noBtn');
+        const container = document.getElementById('mainContainer');
+        const containerRect = container.getBoundingClientRect();
+        
+        // Սահմանափակել փախուստի տարածքը կոնտեյների ներսում
+        const maxX = containerRect.width - btn.offsetWidth - 30;
+        const maxY = containerRect.height - btn.offsetHeight - 40;
+
+        const randomX = Math.max(15, Math.random() * maxX);
+        const randomY = Math.max(60, Math.random() * maxY);
+
+        btn.style.left = randomX + 'px';
+        btn.style.top = randomY + 'px';
+        btn.style.transform = 'none';
+    }
+
+    // --- Օրացույցի սահմանափակում միայն ընթացիկ ամսով ---
+    function setupDatePickerLimits() {
+        const datePicker = document.getElementById('datePicker');
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        
+        const firstDay = `${year}-${month}-01`;
+        const lastDayObj = new Date(year, now.getMonth() + 1, 0);
+        const lastDay = `${year}-${month}-${String(lastDayObj.getDate()).padStart(2, '0')}`;
+
+        datePicker.min = firstDay;
+        datePicker.max = lastDay;
+        // Լռելյայն դնել այսօրվա օրը
+        datePicker.value = `${year}-${month}-${String(now.getDate()).padStart(2, '0')}`;
+    }
+
+    // --- Ընտրանքների պահպանում ---
+    function selectTime(val) {
+        answers.time = val;
+        nextScreen(4);
+    }
+
+    function selectCustomDate() {
+        const val = document.getElementById('datePicker').value;
+        if (val) {
+            // Ձևաչափել հայերեն ընթեռնելի տարբերակով
+            const dateParts = val.split('-');
+            answers.time = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]} (Կոնկրետ Օր) 📅`;
+            nextScreen(4);
+        }
+    }
+
+    function selectPlace(val) {
+        answers.location = val;
+        nextScreen(5);
+    }
+
+    function showPapaInput() {
+        document.getElementById('papaBox').classList.remove('hidden');
+    }
+
+    function submitPapaLocation() {
+        const customLoc = document.getElementById('customLocation').value;
+        if (customLoc.trim() !== '') {
+            answers.location = `Պապայի թույլտվությամբ -> 📍 ${customLoc}`;
+            nextScreen(5);
+        } else {
+            document.getElementById('customLocation').focus();
+        }
+    }
+
+    // --- Պատասխանների ուղարկում և ավարտ ---
+    function finish(foodVal) {
+        answers.food = foodVal;
+        
+        // Ուղարկում Telegram Bot-ին (եթե տվյալները լրացված են)
+        if (botToken && chatId) {
+            const messageText = `🔔 *ԺԱՄԱԴՐՈՒԹՅԱՆ ՊԱՏԱՍԽԱՆ* 🔔\n\n` +
+                                `👤 *Ումից:* ${inviteeName}\n` +
+                                `🎯 *Ում:* ${creatorName}\n\n` +
+                                `📅 *Ազատ օրեր:* ${answers.time}\n` +
+                                `📍 *Վայր:* ${answers.location}\n` +
+                                `🍣 *Ուտելիք/Խմելիք:* ${answers.food}`;
+
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: messageText,
+                    parse_mode: 'Markdown'
+                })
+            }).catch(err => console.error("Չհաջողվեց ուղարկել Telegram-ին:", err));
+        }
+
+        nextScreen(6);
+    }
+
+    // --- ԿԱՐԳԱՎՈՐՈՒՄՆԵՐԻ ԳԵՆԵՐԱՑՈՒՄ (Setup Actions) ---
+    function generateInvitationLink() {
+        const creator = document.getElementById('setupCreator').value.trim();
+        const invitee = document.getElementById('setupInvitee').value.trim();
+        const tToken = document.getElementById('setupBotToken').value.trim();
+        const cId = document.getElementById('setupChatId').value.trim();
+
+        if (!creator || !invitee) {
+            alert("Խնդրում ենք լրացնել գոնե Ձեր և Նրա անունները։");
+            return;
+        }
+
+        const baseUrl = window.location.origin + window.location.pathname;
+        const params = new URLSearchParams();
+        params.set('c', creator);
+        params.set('i', invitee);
+        if (tToken) params.set('t', tToken);
+        if (cId) params.set('ch', cId);
+
+        const finalUrl = baseUrl + '?' + params.toString();
+        
+        document.getElementById('generatedLinkText').innerText = finalUrl;
+        document.getElementById('linkResultBox').classList.remove('hidden');
+    }
+
+    // --- Հղումը պատճենելու ֆունկցիա (Անվտանգ iFrame-ում) ---
+    function copyGeneratedLink() {
+        const linkText = document.getElementById('generatedLinkText').innerText;
+        
+        // Ստեղծում ենք ժամանակավոր input՝ պատճենման համար
+        const tempInput = document.createElement("input");
+        tempInput.value = linkText;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999); // Հեռախոսների համար
+        
+        try {
+            document.execCommand('copy');
+            alert("Հղումը պատճենվեց հիշողության մեջ (clipboard)։ Ուղարկեք այն նրան ✨");
+        } catch (err) {
+            alert("Չհաջողվեց ավտոմատ պատճենել։ Խնդրում ենք պատճենել ձեռքով։");
+        }
+        
+        document.body.removeChild(tempInput);
+    }
+</script>
+
+</body>
+</html>
